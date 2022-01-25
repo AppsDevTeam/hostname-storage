@@ -1,0 +1,20 @@
+{
+  "name": "adt/hostname-storage",
+  "type": "library",
+  "description": "Hostname storage for Nette Framework",
+  "keywords": ["ADT", "nette"],
+  "license": ["MIT"],
+  "authors": [
+    {
+      "name": "Apps Dev Team s.r.o.",
+      "homepage": "http://appsdevteam.com"
+    }
+  ],
+  "require": {
+    "nette/utils": "^2.5",
+    "tracy/tracy": "^2.3"
+  },
+  "autoload": {
+    "psr-4": { "ADT\\HostnameStorage\\": "src/" }
+  }
+}
