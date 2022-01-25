@@ -12,41 +12,17 @@ savehostname:
 	$(APP) app:savehostname $(RUN_ARGS)
 ```
 
-command:
+deploy:
 
 ```
-<?php
+host('master.1')
+	->set('instance', 1);
 
-namespace Svetzdravi\Console;
+host('master.2')
+	->set('instance', 2);
 
-use ADT\HostnameStorage\HostnameStorage;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+...
 
-class HostnameSetterCommand extends Command
-{
+run('make savehostname -- {{instance}}');
 
-	/** @var HostnameStorage */
-	private $hostnameStorage;
-
-	public function __construct(HostnameStorage $hostnameStorage)
-	{
-		parent::__construct();
-		$this->hostnameStorage = $hostnameStorage;
-	}
-
-	public function configure()
-	{
-		$this->setName('app:savehostname');
-		$this->addArgument('hostname', InputArgument::REQUIRED);
-	}
-
-	public function execute(InputInterface $input, OutputInterface $output)
-	{
-		$this->hostnameStorage->set($input->getArgument('hostname'));
-	}
-
-}
 ```

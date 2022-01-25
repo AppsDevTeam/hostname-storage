@@ -12,7 +12,8 @@
   ],
   "require": {
     "nette/utils": "^2.5",
-    "tracy/tracy": "^2.3"
+    "tracy/tracy": "^2.3",
+    "symfony/console": "^4.4"
   },
   "autoload": {
     "psr-4": { "ADT\\HostnameStorage\\": "src/" }
