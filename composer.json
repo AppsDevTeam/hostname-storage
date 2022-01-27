@@ -1,8 +1,8 @@
 {
-  "name": "adt/hostname-storage",
+  "name": "adt/tracy-system-info",
   "type": "library",
-  "description": "Hostname storage for Nette Framework",
-  "keywords": ["ADT", "nette"],
+  "description": "Ability to extent system info in Tracy for Nette Framework",
+  "keywords": ["ADT", "nette", "tracy", "system info"],
   "license": ["MIT"],
   "authors": [
     {
@@ -16,6 +16,6 @@
     "symfony/console": "^4.2"
   },
   "autoload": {
-    "psr-4": { "ADT\\HostnameStorage\\": "src/" }
+    "psr-4": { "ADT\\TracySystemInfo\\": "src/" }
   }
 }

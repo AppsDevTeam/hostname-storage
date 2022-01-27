@@ -1,19 +1,28 @@
-# hostname-storage
+# Tracy System info
+
+Extends information in "System info" in Tracy panel.
 
 composer:
 ```
-composer require adt/hostname-storage
+composer require adt/tracy-system-info
+```
+
+neon:
+```
+extensions:
+	tracySystemInfo: ADT\TracySystemInfo\DI\TracySystemInfoExtension
+
+tracySystemInfo:
+	storageFile: %wwwDir%/../system-info.json
 ```
 
 makefile:
-
 ```
-savehostname:
-	$(APP) app:savehostname $(RUN_ARGS)
+set-instance:
+	$(APP) tracy-system-info:set "{\"Instance\":"$(RUN_ARGS)"}"
 ```
 
-deploy:
-
+deploy.php:
 ```
 host('master.1')
 	->set('instance', 1);
@@ -23,6 +32,5 @@ host('master.2')
 
 ...
 
-run('make savehostname -- {{instance}}');
-
+run("make set-instance -- {{instance}}");
 ```
