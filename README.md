@@ -18,7 +18,7 @@ tracySystemInfo:
 
 makefile:
 ```
-set-instance:
+set-system-info:
 	$(APP) tracy-system-info:set "{\"Instance\":"$(RUN_ARGS)"}"
 ```
 
@@ -32,5 +32,5 @@ host('master.2')
 
 ...
 
-run("make set-instance -- {{instance}}");
+run("make set-system-info -- {{instance}}");
 ```
