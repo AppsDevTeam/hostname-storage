@@ -30,11 +30,11 @@ host('master.2')
 		run(<<<END
 			$run php www/index.php env:$env tracy-system-info:set '{
 				"Instance":     "{{instance}}",
-				"Git commit":   "'$($run git rev-parse HEAD | tr -d '[:space:]')'",
-				"Git branch":   "'$($run git rev-parse --abbrev-ref HEAD | tr -d '[:space:]')'",
-				"Git tag":      "'$($run git describe --tags | tr -d '[:space:]')'",
-				"Git message":  "'$($run git log -1 --pretty=%B | tr "\\n" " " | cut -c 1-32 | tr -d '[:space:]')'",
-				"Deployed at":  "'$($run date '+%Y-%m-%d %H:%M:%S' | tr -d '[:space:]')'"
+				"Git commit":   "'"$($run git rev-parse HEAD | tr -d '\\r\\n')"'",
+				"Git branch":   "'"$($run git rev-parse --abbrev-ref HEAD | tr -d '\\r\\n')"'",
+				"Git tag":      "'"$($run git describe --tags | tr -d '\\r\\n')"'",
+				"Git message":  "'"$($run git log -1 --pretty=%B | cut -c 1-60 | tr -d '\\r\\n')"'",
+				"Deployed at":  "'"$($run date '+%Y-%m-%d %H:%M:%S' | tr -d '\\r\\n')"'"
 			}'
 END
 		);
