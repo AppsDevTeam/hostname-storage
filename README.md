@@ -26,16 +26,15 @@ host('master.2')
 	->set('instance', 2);
 
 ...
-		$run = 'sudo de php';
-		run(<<<END
-			$run php www/index.php env:$env tracy-system-info:set '{
+	run(<<<END
+			echo '{
 				"Instance":     "{{instance}}",
-				"Git commit":   "'"$($run git rev-parse HEAD | tr -d '\\r\\n')"'",
-				"Git branch":   "'"$($run git rev-parse --abbrev-ref HEAD | tr -d '\\r\\n')"'",
-				"Git tag":      "'"$($run git describe --tags | tr -d '\\r\\n')"'",
-				"Git message":  "'"$($run git log -1 --pretty=%B | cut -c 1-60 | tr -d '\\r\\n')"'",
-				"Deployed at":  "'"$($run date '+%Y-%m-%d %H:%M:%S' | tr -d '\\r\\n')"'"
-			}'
+				"Git commit":   "'"$(git rev-parse HEAD | tr -d '\\r\\n')"'",
+				"Git branch":   "'"$(git rev-parse --abbrev-ref HEAD | tr -d '\\r\\n')"'",
+				"Git tag":      "'"$(git describe --tags | tr -d '\\r\\n')"'",
+				"Git message":  "'"$(git log -1 --pretty=%B | cut -c 1-60 | tr -d '\\r\\n')"'",
+				"Deployed at":  "'"$(date '+%Y-%m-%d %H:%M:%S' | tr -d '\\r\\n')"'"
+			}' > system-info.json
 END
-		);
+	);
 ```
