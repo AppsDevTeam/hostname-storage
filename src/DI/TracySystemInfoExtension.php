@@ -25,7 +25,7 @@ class TracySystemInfoExtension extends \Nette\DI\CompilerExtension
 
 	public function afterCompile(Nette\PhpGenerator\ClassType $class) 
 	{
-		$initMethod = $class->methods['initialize'];
+		$initMethod = $class->getMethods()['initialize'];
 		$initMethod->addBody('$_data = &$this->getService(?)->getPanel(?)->data; $_data = $_data \?: []; if (is_array($_data)) { $_data += $this->getService(?)->get();}', [ 'tracy.bar', 'Tracy:info', $this->prefix('storage') ]);
 	}
 }
