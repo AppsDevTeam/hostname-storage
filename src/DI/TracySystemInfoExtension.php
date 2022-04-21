@@ -3,6 +3,7 @@
 namespace ADT\TracySystemInfo\DI;
 
 
+use ADT\TracySystemInfo\SetterCommand;
 use ADT\TracySystemInfo\Storage;
 use Nette;
 use Nette\DI\Extensions\InjectExtension;
@@ -21,6 +22,12 @@ class TracySystemInfoExtension extends \Nette\DI\CompilerExtension
 			->addDefinition($this->prefix('storage'))
 			->setFactory(Storage::class)
 			->setArguments([ $config['storageFile'] ]);
+
+		$this->getContainerBuilder()
+			->addDefinition($this->prefix('setterCommand'))
+			->setFactory(SetterCommand::class)
+			->addTag(InjectExtension::TAG_INJECT, FALSE)
+			->addTag('console.command');
 	}
 
 	public function afterCompile(Nette\PhpGenerator\ClassType $class) 

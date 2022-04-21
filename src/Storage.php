@@ -2,7 +2,8 @@
 
 namespace ADT\TracySystemInfo;
 
-use Nette\Utils\Json;
+use Nette\DI\Config\Adapters\NeonAdapter;
+use Nette\Neon\Neon;
 
 class Storage
 {
@@ -18,20 +19,26 @@ class Storage
 		$this->storageFile = $storageFile;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function get()
 	{
-		$data = @file_get_contents($this->storageFile); // @ - file may not exist
-
-		if (!$data) {
-			return [];
+		try {
+			return (new NeonAdapter())->load($this->storageFile);
+		} catch (\Nette\IOException $e) {
 		}
 
-		return Json::decode($data, Json::FORCE_ARRAY);
+		return [];
 	}
 
-	public function set($data)
+	public function add($key, $value)
 	{
-		file_put_contents($this->storageFile, Json::encode($data));
+		$values = $this->get();
+
+		$values[$key] = $value;
+
+		file_put_contents($this->storageFile, (new NeonAdapter())->dump($values));
 	}
 
 }
