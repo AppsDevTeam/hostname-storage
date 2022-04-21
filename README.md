@@ -34,5 +34,8 @@ run("sudo de php www/index.php tracy-system-info:add --git-commit");
 run("sudo de php www/index.php tracy-system-info:add --git-branch");
 run("sudo de php www/index.php tracy-system-info:add --git-tag");
 run("sudo de php www/index.php tracy-system-info:add --git-message");
-run("sudo de php www/index.php tracy-system-info:add --git-timestamp");
+run("sudo de php www/index.php tracy-system-info:add --timestamp");
+
+// Or just
+run("sudo de php www/index.php tracy-system-info:add --git-commit --git-branch --git-tag --git-message --timestamp");
 ```
