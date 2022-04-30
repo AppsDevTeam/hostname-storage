@@ -10,7 +10,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class SetterCommand extends Command
 {
-
+	protected static $defaultName = 'tracy-system-info:add';
+	
 	/** @var Storage */
 	private $storage;
 
