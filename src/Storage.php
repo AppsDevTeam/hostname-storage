@@ -24,9 +24,8 @@ class Storage
 	 */
 	public function get()
 	{
-		try {
+		if (file_exists($this->storageFile)) {
 			return (new NeonAdapter())->load($this->storageFile);
-		} catch (\Nette\IOException $e) {
 		}
 
 		return [];
