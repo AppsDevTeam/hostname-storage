@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class SetterCommand extends Command
 {
 	protected static $defaultName = 'tracy-system-info:add';
-	
+
 	/** @var Storage */
 	private $storage;
 
@@ -31,8 +31,6 @@ class SetterCommand extends Command
 
 	public function configure()
 	{
-		$this->setName('tracy-system-info:add');
-
 		$this->addArgument('key', InputArgument::OPTIONAL);
 		$this->addArgument('value', InputArgument::OPTIONAL);
 
@@ -42,7 +40,7 @@ class SetterCommand extends Command
 
 	}
 
-	public function execute(InputInterface $input, OutputInterface $output)
+	public function execute(InputInterface $input, OutputInterface $output): int
 	{
 		if ($input->getArgument('key')) {
 			$this->storage->add($input->getArgument('key'), $input->getArgument('value'));
@@ -56,6 +54,8 @@ class SetterCommand extends Command
 			$camelCaseName = str_replace('-', '', ucwords($autoValueName, '-'));  // dashesToCamelCase: https://stackoverflow.com/a/2792045/4837606
 			$this->storage->add($autoValueName, $this->{'value' . $camelCaseName}());
 		}
+
+		return 0;
 	}
 
 
