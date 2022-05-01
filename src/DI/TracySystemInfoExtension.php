@@ -26,8 +26,7 @@ class TracySystemInfoExtension extends \Nette\DI\CompilerExtension
 		$this->getContainerBuilder()
 			->addDefinition($this->prefix('setterCommand'))
 			->setFactory(SetterCommand::class)
-			->addTag(InjectExtension::TAG_INJECT, FALSE)
-			->addTag('console.command');
+			->addTag(InjectExtension::TAG_INJECT, FALSE);
 	}
 
 	public function afterCompile(Nette\PhpGenerator\ClassType $class) 
