@@ -18,10 +18,6 @@ class SetterCommand extends Command
 	private $storage;
 
 	const AUTO_VALUES = [
-		'git-commit',
-		'git-branch',
-		'git-tag',
-		'git-message',
 		'timestamp',
 	];
 
@@ -58,28 +54,6 @@ class SetterCommand extends Command
 		}
 
 		return 0;
-	}
-
-
-	protected function valueGitCommit() {
-		return $this->executeGit('log --format="%H" -n 1');
-	}
-
-	protected function valueGitBranch() {
-		return $this->executeGit('rev-parse --abbrev-ref HEAD');
-	}
-
-	protected function valueGitTag() {
-		return $this->executeGit('describe --tags --always');
-	}
-
-	protected function valueGitMessage() {
-		return $this->executeGit('log -1 --pretty=%B');
-	}
-
-	protected function executeGit($args) {
-		exec('git ' . $args, $output);
-		return implode(PHP_EOL, $output);
 	}
 
 	protected function valueTimestamp() {
