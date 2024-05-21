@@ -30,12 +30,10 @@ host('master.2')
 run("sudo de php www/index.php tracy-system-info:add Instance {{instance}}");
 run("sudo de php www/index.php tracy-system-info:add MyKey MyValue");
 
-run("sudo de php www/index.php tracy-system-info:add --git-commit");
-run("sudo de php www/index.php tracy-system-info:add --git-branch");
-run("sudo de php www/index.php tracy-system-info:add --git-tag");
-run("sudo de php www/index.php tracy-system-info:add --git-message");
-run("sudo de php www/index.php tracy-system-info:add --timestamp");
 
-// Or just
-run("sudo de php www/index.php tracy-system-info:add --git-commit --git-branch --git-tag --git-message --timestamp");
+run("sudo de php www/index.php tracy-system-info:add Commit $(git log --format=\"%H\" -n 1)");
+run("sudo de php www/index.php tracy-system-info:add Branch $(git rev-parse --abbrev-ref HEAD)");
+run("sudo de php www/index.php tracy-system-info:add Tag $(git describe --tags --always)");
+run("sudo de php www/index.php tracy-system-info:add Message \"$(git log -1 --pretty=%B)\"");
+run("sudo de php www/index.php tracy-system-info:add --timestamp");
 ```
